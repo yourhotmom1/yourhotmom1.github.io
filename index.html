@@ -16,6 +16,7 @@
             color: #1f2937;
             padding: 20px;
             box-sizing: border-box;
+            overflow: hidden; 
         }
         .card {
             background: #ffffff;
@@ -25,29 +26,49 @@
             max-width: 500px;
             width: 100%;
             text-align: center;
+            position: relative;
+            z-index: 10;
         }
         h1 { margin-top: 0; font-size: 24px; color: #111827; }
         p { font-size: 16px; line-height: 1.6; color: #4b5563; margin-bottom: 10px; }
         .date-info {
             font-size: 13px;
             color: #6b7280;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-style: italic;
         }
+        
+        #troll-btn {
+            background-color: #10b981; 
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.4);
+            transition: background-color 0.2s;
+            margin-bottom: 30px;
+            position: relative; 
+            z-index: 9999;
+        }
+
+        /* Hier ist die geänderte, winzige Fußzeile */
         .footer-note {
             margin-top: 30px;
             padding-top: 20px;
             border-top: 1px solid #e5e7eb;
-            font-size: 14px;
-            color: #6b7280;
+            font-size: 10px; /* Sehr klein */
+            color: #9ca3af; /* Helles Grau zur Tarnung */
         }
         .footer-note a {
-            color: #374151;
+            color: #9ca3af;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: normal; /* Nicht mehr fettgedruckt */
         }
         .footer-note a:hover {
-            text-decoration: underline;
+            color: #4b5563;
         }
     </style>
 </head>
@@ -60,6 +81,8 @@
             Stand der Information: <span id="dynamic-date"></span>
         </div>
 
+        <button id="troll-btn">Angebot abgeben 💰</button>
+
         <div class="footer-note">
             Willst es trotzdem versuchen? Schreib mir ne Mail: <br>
             <a href="mailto:netterversuch@brugger.de">netterversuch@brugger.de</a>
@@ -67,15 +90,31 @@
     </div>
 
     <script>
-        // Heutiges Datum holen und 7 Tage abziehen
         const d = new Date();
         d.setDate(d.getDate() - 7);
-        
-        // Datum ins deutsche Format umwandeln (TT.MM.JJJJ)
         const dateString = d.toLocaleDateString('de-DE');
-        
-        // Das berechnete Datum in das HTML-Element einfügen
         document.getElementById('dynamic-date').innerText = dateString;
+
+        const trollBtn = document.getElementById('troll-btn');
+        
+        const moveButton = () => {
+            trollBtn.style.position = 'fixed';
+            
+            const maxX = window.innerWidth - trollBtn.clientWidth - 20;
+            const maxY = window.innerHeight - trollBtn.clientHeight - 20;
+            
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+            
+            trollBtn.style.left = randomX + 'px';
+            trollBtn.style.top = randomY + 'px';
+        };
+
+        trollBtn.addEventListener('mouseover', moveButton);
+        trollBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); 
+            moveButton();
+        });
     </script>
 </body>
 </html>
