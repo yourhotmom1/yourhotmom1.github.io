@@ -39,12 +39,10 @@
             font-style: italic;
         }
         
-        /* Abstand für den Besucherzähler */
         .counter-badge {
             margin-bottom: 25px;
         }
         
-        /* Container für Text & Button, damit sie übereinander liegen können */
         .footer-wrapper {
             position: relative;
             margin-top: 30px;
@@ -61,7 +59,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* Zentriert den Button genau über dem Text */
+            transform: translate(-50%, -50%); 
             background-color: #10b981; 
             color: white;
             border: none;
@@ -75,11 +73,10 @@
             z-index: 9999;
         }
 
-        /* Die Fußzeile mit der Mail-Adresse */
         .footer-note {
-            font-size: 10px; /* Sehr klein */
-            color: #9ca3af; /* Helles Grau zur Tarnung */
-            z-index: 1; /* Liegt unter dem Button */
+            font-size: 10px; 
+            color: #9ca3af; 
+            z-index: 1; 
         }
         .footer-note a {
             color: #9ca3af;
@@ -100,12 +97,10 @@
             Stand der Information: <span id="dynamic-date"></span>
         </div>
 
-        <!-- Besucherzähler von hits.sh (zählt automatisch hoch) -->
         <div class="counter-badge">
             <img src="https://hits.sh/brugger.de/netterversuch.svg?style=flat-square&label=Besucher&color=10b981" alt="Besucherzähler">
         </div>
 
-        <!-- Wrapper packt Button und Text zusammen -->
         <div class="footer-wrapper">
             <div class="footer-note">
                 Willst es trotzdem versuchen? Schreib mir ne Mail: <br>
@@ -124,9 +119,19 @@
 
         const trollBtn = document.getElementById('troll-btn');
         
+        // Hier wird die Audio-Datei geladen (muss im selben GitHub-Ordner liegen)
+        const huhnSound = new Audio('huhn.mp3');
+        
         const moveButton = () => {
+            // Sound abspielen und Fehler abfangen (falls der Browser blockiert)
+            huhnSound.currentTime = 0; // Spult den Ton zurück, falls man sehr schnell ist
+            huhnSound.play().catch(e => {
+                // Leiser Fehler im Hintergrund, falls noch nicht geklickt wurde
+                console.log("Browser blockiert den Ton noch, bis der Nutzer klickt.");
+            });
+
             trollBtn.style.position = 'fixed';
-            trollBtn.style.transform = 'none'; // Transform entfernen, damit Zufallskoordinaten exakt passen
+            trollBtn.style.transform = 'none'; 
             
             const maxX = window.innerWidth - trollBtn.clientWidth - 20;
             const maxY = window.innerHeight - trollBtn.clientHeight - 20;
