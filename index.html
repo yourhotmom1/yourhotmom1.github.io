@@ -31,11 +31,17 @@
         }
         h1 { margin-top: 0; font-size: 24px; color: #111827; }
         p { font-size: 16px; line-height: 1.6; color: #4b5563; margin-bottom: 10px; }
+        
         .date-info {
             font-size: 13px;
             color: #6b7280;
             margin-bottom: 20px;
             font-style: italic;
+        }
+        
+        /* Abstand für den Besucherzähler */
+        .counter-badge {
+            margin-bottom: 25px;
         }
         
         /* Container für Text & Button, damit sie übereinander liegen können */
@@ -92,6 +98,11 @@
         
         <div class="date-info">
             Stand der Information: <span id="dynamic-date"></span>
+        </div>
+
+        <!-- Besucherzähler von hits.sh (zählt automatisch hoch) -->
+        <div class="counter-badge">
+            <img src="https://hits.sh/brugger.de/netterversuch.svg?style=flat-square&label=Besucher&color=10b981" alt="Besucherzähler">
         </div>
 
         <!-- Wrapper packt Button und Text zusammen -->
